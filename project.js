@@ -70,16 +70,64 @@ function JeDobijeno() {
   return false;
 }
 
+function izracunajDobitak(ulogPoLiniji) {
+  let dobitak = 0;
+  for (let i = 0; i < 3; i++) {
+    if (matricaAparata[i][0] != "") {
+      if (
+        matricaAparata[i][0] === "A" &&
+        matricaAparata[i][1] === "A" &&
+        matricaAparata[i][2] === "A"
+      ) {
+        dobitak += ulogPoLiniji * 5;
+      }
+      if (
+        matricaAparata[i][0] === "B" &&
+        matricaAparata[i][1] === "B" &&
+        matricaAparata[i][2] === "B"
+      ) {
+        dobitak += ulogPoLiniji * 4;
+      }
+      if (
+        matricaAparata[i][0] === "C" &&
+        matricaAparata[i][1] === "C" &&
+        matricaAparata[i][2] === "C"
+      ) {
+        dobitak += ulogPoLiniji * 3;
+      }
+      if (
+        matricaAparata[i][0] === "D" &&
+        matricaAparata[i][1] === "D" &&
+        matricaAparata[i][2] === "D"
+      ) {
+        dobitak += ulogPoLiniji * 2;
+      }
+    }
+  }
+  return dobitak;
+}
+
 let kredit = getPocetniDepozit();
-let ulogPoLiniji = parseFloat(ulaz("Unesite ulog po liniji: "));
-let brojLinija = getBrojLinija(kredit, ulogPoLiniji);
-zavrti(brojLinija);
-console.log(JeDobijeno());
-// if (JeDobijeno()) {
-//   kredit += izracunajDobitak();
-// } else {
-//   console.log("Niste dobili :(");
-// }
+while (true) {
+  let ulogPoLiniji = parseFloat(ulaz("Unesite ulog po liniji: "));
+  let brojLinija = getBrojLinija(kredit, ulogPoLiniji);
+  kredit -= ulogPoLiniji * brojLinija;
+  zavrti(brojLinija);
+  console.log(JeDobijeno());
+  if (JeDobijeno()) {
+    dobitak = izracunajDobitak(ulogPoLiniji);
+    kredit += dobitak;
+    console.log("Dobili ste " + dobitak + "!"); // TODO u konzoli upisuje NaN
+    console.log("Vas kredit je: " + kredit);
+  } else {
+    console.log("Niste dobili :(");
+    console.log("Vas kredit je: " + kredit);
+  }
+  let izbor = ulaz("Da li zelite da vrtite ponovo (Y/N)? ")
+  if (izbor === "N" || izbor === "n"){
+    return
+  }
+}
 
 /* 
 A = 5x
