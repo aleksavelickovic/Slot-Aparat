@@ -108,16 +108,16 @@ function izracunajDobitak(ulogPoLiniji) {
 }
 
 let kredit = getPocetniDepozit();
+let ulogPoLiniji = parseFloat(ulaz("Unesite ulog po liniji: "));
+let brojLinija = getBrojLinija(kredit, ulogPoLiniji);
 while (true) {
-  let ulogPoLiniji = parseFloat(ulaz("Unesite ulog po liniji: "));
-  let brojLinija = getBrojLinija(kredit, ulogPoLiniji);
   kredit -= ulogPoLiniji * brojLinija;
   zavrti(brojLinija);
   console.log(JeDobijeno());
   if (JeDobijeno()) {
     dobitak = izracunajDobitak(ulogPoLiniji);
     kredit += dobitak;
-    console.log("Dobili ste " + dobitak + "!"); // TODO u konzoli upisuje NaN
+    console.log("Dobili ste " + dobitak + "!");
     console.log("Vas kredit je: " + kredit);
   } else {
     console.log("Niste dobili :(");
