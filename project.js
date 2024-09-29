@@ -17,9 +17,6 @@ function getPocetniDepozit() {
   }
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
 
 function zavrti() {
   for (i = 0; i < 3; i++) {
