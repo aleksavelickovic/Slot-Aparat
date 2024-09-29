@@ -1,25 +1,41 @@
 const ulaz = require("prompt-sync")();
 
 const matricaAparata = [
-  ["a", "a", "a"],
-  ["b", "b", "b"],
-  ["c", "c", "c"],
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
 ];
 
 function getPocetniDepozit() {
   while (true) {
     const depositAmount = parseFloat(ulaz("Unesite iznos pocetnog depozita: "));
     if (isNaN(depositAmount) || depositAmount <= 0) {
-      console.log("Molimo vas unesite validnu vrednost!");
+      console.log("Molimo Vas unesite validnu vrednost!");
     } else {
       return depositAmount;
     }
   }
 }
 
+function getBrojLinija(kredit, ulogPoLiniji) {
+  while (true) {
+    const brojLinija = parseFloat(
+      ulaz("Unesite broj linija na koje zelite da se kladite (1-3): ")
+    );
+    if (isNaN(brojLinija) || brojLinija <= 0) {
+      console.log("Molimo Vas unesite validnu vrednost!");
+    } else if (brojLinija > 3 || brojLinija < 1) {
+      console.log("Molimo Vas unesite broj od 1 do 3!");
+    } else if (ulogPoLiniji * brojLinija > kredit) {
+      console.log("Nemate dovoljno kredita za ovaj ulog!");
+    } else {
+      return brojLinija;
+    }
+  }
+}
 
-function zavrti() {
-  for (i = 0; i < 3; i++) {
+function zavrti(brojLinija) {
+  for (i = 0; i < brojLinija; i++) {
     for (j = 0; j < 3; j++) {
       broj = Math.random();
       // console.log(broj);
@@ -40,22 +56,30 @@ function zavrti() {
   console.log(matricaAparata[2]);
 }
 
-function proveriDobitak() {
+function JeDobijeno() {
   for (let i = 0; i < 3; i++) {
-    if (
-      matricaAparata[i][0] === matricaAparata[i][1] &&
-      matricaAparata[i][1] === matricaAparata[i][2]
-    ) {
-      return true;
+    if (matricaAparata[i][0] != "") {
+      if (
+        matricaAparata[i][0] === matricaAparata[i][1] &&
+        matricaAparata[i][1] === matricaAparata[i][2]
+      ) {
+        return true;
+      }
     }
   }
   return false;
 }
 
-zavrti();
-console.log(proveriDobitak());
-
-// let kredit = getPocetniDepozit();
+let kredit = getPocetniDepozit();
+let ulogPoLiniji = parseFloat(ulaz("Unesite ulog po liniji: "));
+let brojLinija = getBrojLinija(kredit, ulogPoLiniji);
+zavrti(brojLinija);
+console.log(JeDobijeno());
+// if (JeDobijeno()) {
+//   kredit += izracunajDobitak();
+// } else {
+//   console.log("Niste dobili :(");
+// }
 
 /* 
 A = 5x
