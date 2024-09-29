@@ -6,6 +6,6 @@ SETUP:
 
 Instalirati node: https://nodejs.org/en/download/prebuilt-installer
 
-Pozicionirati terminal u folder sa projektom i kucati sledece komande po redosledu (bez navodnika):
+Pozicionirati terminal u folder u kom se nalazi projekat i kucati (bez navodnika): 'node project.js'
 
-'npm i prompt-sync'
+U slucaju da se nakon ovoga program ne pokrece, restartovati VSCode i eventualno Vas racunar.
