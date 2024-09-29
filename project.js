@@ -123,9 +123,14 @@ while (true) {
     console.log("Niste dobili :(");
     console.log("Vas kredit je: " + kredit);
   }
-  let izbor = ulaz("Da li zelite da vrtite ponovo (Y/N)? ")
-  if (izbor === "N" || izbor === "n"){
-    return
+  if (ulogPoLiniji * brojLinija > kredit) {
+    console.log("Zao nam je, ali nemate dovoljno kredita za naredni spin :(");
+    return;
+  }
+  let izbor = ulaz("Da li zelite da vrtite ponovo (Y/N)? ");
+  if (izbor === "N" || izbor === "n") {
+    console.log("Hvala Vam na igranju, dovidjenja!");
+    return;
   }
 }
 
